@@ -98,7 +98,33 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <h3 id="01-背包"><a href="#01-背包" class="headerlink" title="01 背包"></a>01 背包</h3><pre><code class="bash">#include &lt;iostream&gt;
+
+using namespace std;
+
+const int N = 1010;
+
+int v[N],w[N];
+
+int f[N];
+
+int n,m;
+
+int main()
+&#123;
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    for (int i = 1;i &lt;= n;i ++) scanf(&quot;%d%d&quot;,&amp;v[i],&amp;w[i]);
+    for (int i = 1;i &lt;= n;i ++)
+        for (int j = m;j &gt;= v[i];j --)
+            f[j] = max(f[j],f[j - v[i]] + w[i]);
+            //在选v[i]的前提下继承上一层与剩余体积相同的最优解.
+            //优化前当j&lt;v[i]时数组对应位置为空,倒序节省空间复杂度.
+    printf(&quot;%d&quot;,f[m]);
+    return 0;
+&#125;
+```bash
+</code></pre>
+
       
     </div>
     <footer class="article-footer">
